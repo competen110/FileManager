@@ -1,0 +1,15 @@
+{
+  "name": "file-explorer",
+  "version": "1.0.0",
+  "description": "This is a simple Electron application for exploring files",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "S",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.6.6",
+    "electron-packager": "^8.7.0"
+  }
+}

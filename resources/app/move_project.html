@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>移动到</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            li{
+                list-style: none;
+            }
+            #wrapper{
+                width: 290px;
+                height: 330px;
+                position: relative;
+            }
+            /*容器的样式*/
+            #container{
+                height: 275px;
+                overflow: scroll;
+                overflow-x: hidden;
+                border-bottom: 1px solid lightgray;
+            }
+            /*项目列表中每个项目的样式*/
+            #container li{
+                height: 35px;
+                margin: 0 auto;
+                margin-top: 5px;
+                padding-left: 55px;
+                padding-top: 5px;
+                line-height: 40px;
+                background: url(images/project图标白.png) no-repeat;
+                background-size: 35px 35px;
+                background-position: 11px 0;
+                background-color: white;
+                word-wrap: break-word;
+                cursor: pointer;
+                color: #99AEF9;
+            }
+            /*项目列表点击后的样式*/
+            #container li.clicked{
+                background: url(images/project图标黑.png) no-repeat;
+                background-color: #99AEF9;
+                background-size: 35px 35px;
+                background-position: 11px 0;
+                color: white;
+            }
+            /*提交按钮的样式*/
+            input[type="submit"]{
+               width: 60px;
+               height: 35px;
+               border: 1px solid gray;
+               border-radius: 5px;
+               background-color: white;
+               position: absolute;
+               bottom: 8px;
+               right: 22px; 
+               cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <ul id="container">
+                
+            </ul>
+            <input type="submit" value="确定" id="submit" />
+        </div>
+        <script>
+            var ipcRenderer = require("electron").ipcRenderer;
+            var fs = require("fs");
+            var path = require("path");
+
+            //生成项目节点函数
+            function showProject(projectname){
+                var li = document.createElement("li");
+                li.className = "project";
+                li.innerText = projectname;
+                container.appendChild(li);
+            }
+            //读取本地仓库项目
+            fs.readdir(path.join(__dirname,"/projects/"),function(error,files){
+                if(error){
+                    throw error;
+                    console.log(error);
+                }else{
+                    files.forEach(function(file){
+                        var dP = path.join(__dirname,"/projects/")+file;
+                        fs.stat(dP,function(error,stats){
+                            if(stats.isDirectory()){
+                                showProject(file);
+                            }
+                        })
+                    })
+                }
+            });
+
+            var container = document.getElementById("container");
+            var submit = document.getElementById("submit");
+            var choosedProjectName;
+            container.addEventListener("click", function(event){
+                var _target = event.target;
+                if(_target.nodeName.toUpperCase()=="LI"){
+                    var arr = container.querySelectorAll("li");
+                    var len = arr.length;
+                    for(var i = 0;i<len;i++){
+                        arr[i].className = "project";
+                    }
+                    _target.className="project clicked";
+                    choosedProjectName = _target.innerText;
+                }
+            }, false);
+            submit.addEventListener("click",function(event){
+                if(choosedProjectName==null){
+                    alert("请选择要移动到的文件夹");
+                    return false;
+                }else{
+                    ipcRenderer.send("move-project-close",choosedProjectName);
+                }
+            },false);
+        </script>
+    </body>
+</html>
+
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>File Explorer</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div id="left">
+
+                <div id="new-btn">
+                    <span>+ New Project</span>
+                </div>
+
+                <ul id="projects">
+                </ul>
+
+            </div>
+
+            <div id="right">
+                
+                <ul class="tools">
+                    <li class="tool-btn" id="add">Add</li>
+                    <li class="tool-btn" id="delete">Delete</li>
+                    <li class="tool-btn" id="move">Move</li>
+                    <li class="tool-btn" id="encrypt">Encrypt</li>
+                    <li class="search-box">
+                        <input type="text" id="search-input" placeholder="  请输入文字进行搜索..."/>
+                        <span id="search-btn"></span>
+                    </li>
+                </ul>
+
+                <div id="files">
+                    
+                </div>
+                <div id="result">
+                    <p >&nbsp&nbsp结果显示区:</p>
+                </div>
+
+            </div>
+
+        </div>
+         <script src="renderer.js"></script>
+    </body>
+</html>

@@ -1,0 +1,176 @@
+/* 
+* @Date:   2017-04-28 11:39:14
+* @Last Modified time: 2017-05-05 11:45:54
+*/
+
+/* 初始化浏览器样式 */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    /* 定义全局字体*/
+    font-family: "Microsoft YaHei";  
+    font-size: 14px;
+    background-color: #C2CFFC;
+}
+li{
+    list-style: none;
+}
+#wrapper{
+    overflow: hidden;
+    margin-top: 2%;
+}
+/************************************ left *********************************************/
+/*左边项目显示区的布局*/
+#left{
+    width: 24%;
+    float: left;
+    margin-left: 3%;
+    margin-right: 1%;
+}
+/*新建项目按钮的样式*/
+#new-btn{
+    height: 35px;
+    background-color: white;
+    text-align: center;
+}
+/*鼠标悬浮按钮上样式*/
+#new-btn:hover{
+    background-color: #99AEF9;
+    color: white;
+    cursor: pointer;    
+}
+#new-btn span{
+    line-height: 35px;
+}
+/*项目展示区的样式*/
+#projects{
+    height: 530px;
+    margin-top: 6%;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: white;
+}
+/*项目列表中每个项目的样式*/
+#projects li{
+    margin-top: 5%;
+}
+/*项目列表点击后的样式*/
+#projects li#li-clicked{
+    background-color: #99AEF9;    
+}
+#projects li span{
+    display: block;
+    height: 40px;
+    width: 65%;
+    margin: 0 auto;
+    padding-left: 45px;
+    line-height: 40px;
+    background: url(images/project图标白.png) top left no-repeat;
+    background-size: 35px 35px;
+    word-wrap: break-word;
+}
+#projects li#li-clicked span{
+    background: url(images/project图标黑.png) top left no-repeat;
+    background-size: 35px 35px;
+    color: white;
+}
+
+/************************************ right *******************************************/
+#right{
+    width: 67.5%;
+    float: right;
+    margin-right: 3%;
+}
+/*工具栏的样式*/
+.tools{
+    height: 40px;
+    overflow: hidden;
+}
+.tools li{
+    float: left;
+    width: 10%;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 3%;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+.tools li.tool-btn:hover{
+    background-color: #99AEF9;
+    color: white;
+    cursor: pointer;    
+}
+/*文件搜索框的样式*/
+.tools li.search-box{
+    width: 48%;
+    margin-right: 0;
+}
+.tools li input[type="text"]{
+    float: left;
+    width: 87%;
+    height: 32px;
+    line-height: 34px;
+}
+.tools li span#search-btn{
+    display: inline-block;
+    width: 8%;
+    height: 34px;
+    background: url(images/搜索框搜索图标.png) top center no-repeat;
+    background-size: 34px 34px;
+}
+.tools li span#search-btn:hover{
+    cursor: pointer;        
+}
+
+/*搜索结果的容器的样式*/
+#result{
+    height: 530px;
+    margin-top: 1.5%;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    display: none;
+}
+
+/*文件展示区的文件的样式*/
+#files{
+    height: 530px;
+    margin-top: 1.5%;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: white;
+}
+#files div.file,#result div.file{
+    float: left;
+    width: 14%;
+    height: 130px;
+    margin-top: 2%;
+    margin-left: 2.3%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    overflow: hidden;
+    text-align: center;
+    word-wrap: break-word;
+}
+#files div.file.file-clicked,#result div.file.file-clicked{
+    background-color: #99AEF9;
+}
+
+#files div.file img,#result div.file img{
+    width: 90%;
+}
+
+/*媒体查询以适合不同尺寸的屏幕*/
+@media (min-width: 1024px){
+    #projects{
+        height: 580px;
+    }
+    #files{
+        height: 580px;
+    }
+}

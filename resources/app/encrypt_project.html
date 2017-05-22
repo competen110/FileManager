@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Press encryption</title>
+        <style>
+            div{
+                width: 350px;
+                height: 100px;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 100px;
+            }
+            input[type="text"]{
+                width: 220px;
+                height: 27px;
+                border: 1px solid darkgray;
+                border-radius: 4px;
+            }
+            button{
+                width: 60px;
+                height: 29px;
+                margin-left: 5px;
+                border: 1px solid darkgray;
+                border-radius: 4px;
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="project-password" placeholder="  请输入项目密码"/>
+            <button id="submit-btn">确定</button>
+        </div>
+        <script>
+            const ipcRenderer = require("electron").ipcRenderer;
+
+            var input = document.getElementById("project-password");
+            var button = document.getElementById("submit-btn");
+
+            function check(){
+            
+                if(input.value.length==0){
+                    alert("密码不能为空!");
+                    input.focus();
+                    return false;
+                } else if(input.value.length>10){
+                    alert("密码长度至多为10!");
+                    input.focus();
+                    return false;
+                }else{
+                    return true;
+                }
+            }            
+            button.onclick = function(){
+                if(check()){
+                    ipcRenderer.send("encrypt-project-close",input.value);
+                }
+            }
+
+        </script>
+    </body>
+</html>
